@@ -15,7 +15,6 @@ export default class Todos extends Component {
   add(todo){
     const array = this.state.todos.slice();
     array.push(todo);
-    console.log(todo);
     this.setState({
       todos: array
     });
@@ -33,7 +32,6 @@ export default class Todos extends Component {
      try {
        const res = await axios.delete(`/api/todos/${id}`)
        const arr = await axios.get('/api/todos')
-       console.log('THIS IS ARR', arr.data);
        this.setState( {
          todos: arr.data
        })
@@ -41,7 +39,6 @@ export default class Todos extends Component {
        console.log(err)
      }
 
-    //this.setState({todos: })
   }
 
   render () {

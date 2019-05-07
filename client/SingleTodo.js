@@ -27,7 +27,6 @@ export default class SingleTodo extends Component {
 
   render () {
     const todo = this.state.todo
-    console.log('TODO in SINGLETODO: ', this.state.todo)
     return (
       <div id='single-todo'>
         <Todo todo={todo} />

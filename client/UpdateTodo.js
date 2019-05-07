@@ -14,13 +14,6 @@ export default class UpdateTodo extends Component {
    
   }
 
-  componentDidMount() {
-    console.log('MOUNT: ', this.props.todo)
-    this.setState({
-      todo: this.props.todo
-    })
-  }
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
