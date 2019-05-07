@@ -9,8 +9,15 @@ export default class Todos extends Component {
     this.state = {
       todos: []
     }
+    this.add = this.add.bind(this);
   }
-
+  add(todo){
+    const array = this.state.todos.slice();
+    array.push(todo);
+    this.setState({
+      todos: array
+    });
+  }
   async componentDidMount () {
     const res = await axios.get('/api/todos')
     this.setState({todos: res.data})
@@ -19,7 +26,7 @@ export default class Todos extends Component {
   render () {
     return (
       <div id='todos'>
-        <CreateTodo />
+        <CreateTodo add = {this.add}/>
         {
           this.state.todos.map(todo => <Todo todo={todo} key={todo.id} />)
         }
