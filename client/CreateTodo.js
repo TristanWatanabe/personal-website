@@ -8,6 +8,7 @@ export default class CreateTodo extends Component {
     this.state = {
       taskName: '',
       assignee: '',
+      hasError: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,25 +19,49 @@ export default class CreateTodo extends Component {
     )
   }
   async handleSubmit(event) {
-    event.preventDefault()
-    const res = await axios.post('/api/todos', {taskName: this.state.taskName, assignee: this.state.assignee});
-    this.props.add(res.data);
-    this.setState({
-      taskName: '',
-      assignee: ''
-    });
+    try {
+      event.preventDefault()
+      const res = await axios.post('/api/todos', {taskName: this.state.taskName, assignee: this.state.assignee});
+      this.props.add(res.data);
+      this.setState({
+        taskName: '',
+        assignee: ''
+      });
+
+    } catch(err) {
+      console.log(err);
+      this.setState({
+        hasError: true
+      })
+      
+    }
+
     
   }
-
+  
 
   render () {
-    return (
-      <TodoForm 
+ 
+    return this.state.hasError ? (
+      <div>
+        <TodoForm
         task = {this.state} 
         handleChange = {this.handleChange} 
         handleSubmit = {this.handleSubmit}
         />
-
+        <div className = 'error'> YIKES! </div>
+      </div>
+ 
+    ) : 
+    (
+      <TodoForm
+        task = {this.state} 
+        handleChange = {this.handleChange} 
+        handleSubmit = {this.handleSubmit}
+        />
     )
+    
+
+
   }
 }

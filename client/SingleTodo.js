@@ -29,7 +29,7 @@ export default class SingleTodo extends Component {
     const todo = this.state.todo
     return (
       <div id='single-todo'>
-        <Todo todo={todo} />
+        <Todo todo={todo} remove = {this.props.remove}/>
         <UpdateTodo todo={todo} update = {this.update}/>
         <Link to='/'>Back</Link>
       </div>

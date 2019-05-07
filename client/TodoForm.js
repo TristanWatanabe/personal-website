@@ -18,7 +18,6 @@ export default function TodoForm (props) {
             <label htmlFor='assignee'>Assign To<span className='warning'>Field is required!</span> </label>
             <input type='text' name='assignee' value={props.task.assignee} onChange={props.handleChange}/>
             <button type='submit' disabled={button}>Submit</button>
-            <div className='error'>There was a problem!</div>
         </form>
     )
 

@@ -7,7 +7,8 @@ export default class UpdateTodo extends Component {
     super();
     this.state = {
       taskName: '',
-      assignee: ''
+      assignee: '',
+      hasError: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,13 +40,23 @@ export default class UpdateTodo extends Component {
 
     } catch (error) {
         console.log(error)
+        this.setState({
+          hasError: true
+        })
     }
   }
 
 
 
   render () {
-    return (
+    return this.state.hasError ? (
+      <div>
+        <TodoForm task = {this.state} handleChange = {this.handleChange} handleSubmit = {this.handleSubmit}/>
+      <div className = 'error'> YIKES! </div>
+      </div>
+      
+    
+      ): (
       <TodoForm task = {this.state} handleChange = {this.handleChange} handleSubmit = {this.handleSubmit}/>
     )
   }
