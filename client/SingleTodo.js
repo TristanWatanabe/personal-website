@@ -10,22 +10,28 @@ export default class SingleTodo extends Component {
     this.state = {
       todo: {}
     }
+    this.update = this.update.bind(this);
   }
 
   async componentDidMount () {
-    const todoId = this.props.match.params.todoId
-    console.log(todoId)
+    const todoId = this.props.match.params.todoId;
     const res = await axios.get(`/api/todos/${todoId}`)
     this.setState({todo: res.data})
   }
 
+  update (todo) {
+    this.setState({
+      todo: todo
+    }) 
+  }
+
   render () {
     const todo = this.state.todo
-
+    console.log('TODO in SINGLETODO: ', this.state.todo)
     return (
       <div id='single-todo'>
         <Todo todo={todo} />
-        <UpdateTodo />
+        <UpdateTodo todo={todo} update = {this.update}/>
         <Link to='/'>Back</Link>
       </div>
     )
