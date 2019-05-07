@@ -14,6 +14,7 @@ export default class SingleTodo extends Component {
 
   async componentDidMount () {
     const todoId = this.props.match.params.todoId
+    console.log(todoId)
     const res = await axios.get(`/api/todos/${todoId}`)
     this.setState({todo: res.data})
   }

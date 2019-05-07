@@ -13,7 +13,7 @@ const Todo = (props) => {
         <p>Assigned to: {todo.assignee}</p>
       </div>
       <div className='column'>
-        <button className='remove'>Remove</button>
+          <button className='remove' onClick={() => props.remove(todo.id)}>Remove</button>
       </div>
     </div>
   )

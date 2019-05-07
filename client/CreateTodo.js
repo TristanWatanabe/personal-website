@@ -19,7 +19,7 @@ export default class CreateTodo extends Component {
   async handleSubmit(event) {
     event.preventDefault()
     const res = await axios.post('/api/todos', {taskName: this.state.taskName, assignee: this.state.assignee});
-    this.props.add(this.state);
+    this.props.add(res.data);
     this.setState({
       taskName: '',
       assignee: ''
