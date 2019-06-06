@@ -1,7 +1,11 @@
 const db = require('./db')
-const Todo = require('./Todo')
+const Article = require('./Article')
+const Comment = require('./Comment')
+
+Article.hasMany(Comment);
 
 module.exports = {
   db,
-  Todo
+  Article,
+  Comment
 }
